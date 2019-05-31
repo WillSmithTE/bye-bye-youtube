@@ -1,35 +1,21 @@
 const STORAGE_KEY = 'KillNewsFeed';
 let interval;
 
-function replaceBodyAndTitle() {
+replaceBodyAndTitle(0);
+
+function replaceBodyAndTitle(count) {
   let youtubes = document.getElementsByTagName('ytd-app');
   if (isNullOrUndefined(youtubes) || isNullOrUndefined(youtubes[0])) {
-    setTimeout(replaceBodyAndTitle, 100);
+    setTimeout(() => replaceBodyAndTitle(count), 10);
   } else {
     let youtube = youtubes[0];
     youtube.innerHTML = 'back to work conn';
-    setTimeout(replaceBodyAndTitle, 1000);
+    if (count < 4) {
+      setTimeout(() => replaceBodyAndTitle(++count), 500);
+    }
   }
 }
 
 function isNullOrUndefined(anything) {
   return anything === null || anything === undefined;
 }
-
-replaceBodyAndTitle();
-
-// chrome.storage.sync.get(STORAGE_KEY, value => {
-//   if (value.hasOwnProperty(STORAGE_KEY) && value[STORAGE_KEY] === true) {
-//     replaceBodyAndTitle();
-//     interval = window.setInterval(replaceBodyAndTitle, 3000);
-//   }
-// });
-
-// chrome.storage.onChanged.addListener((changes, namespace) => {
-//   if (changes[STORAGE_KEY].newValue) {
-//     replaceBodyAndTitle();
-//     interval = window.setInterval(replaceBodyAndTitle, 3000);
-//   } else {
-//     window.clearInterval(interval);
-//   }
-// });
