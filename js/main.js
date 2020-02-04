@@ -1,5 +1,3 @@
-const STORAGE_KEY = 'KillNewsFeed';
-let interval;
 
 replaceBodyAndTitle(0);
 
